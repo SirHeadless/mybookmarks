@@ -1,0 +1,103 @@
+DB: myBookmarks
+
+
+
+DROP TYPE IF EXISTS public.url_type CASCADE;
+
+CREATE TYPE url_type AS ENUM ('Tutorial','Description','Information');
+
+COMMIT;
+
+
+DROP SEQUENCE IF EXISTS url_seq;
+
+CREATE SEQUENCE url_seq
+       INCREMENT BY 1
+       MINVALUE 1
+       CACHE 1
+       NO CYCLE;
+
+COMMIT;
+
+DROP TABLE IF EXISTS categories CASCADE;
+
+CREATE TABLE categories
+(
+   category_id       bigint          NOT NULL,
+   parent_id         bigint,
+   name              varchar(100)    NOT NULL,
+   entry_updated_at  timestamp,
+   entry_created_at  timestamp,
+   description       varchar(1000)
+);
+
+ALTER TABLE categories
+   ADD CONSTRAINT categories_pkey
+   PRIMARY KEY (category_id);
+
+COMMIT;
+
+
+DROP TABLE IF EXISTS category_url_map CASCADE;
+
+CREATE TABLE category_url_map
+(
+   category_id  bigint         NOT NULL,
+   name         varchar(100)   NOT NULL
+);
+
+COMMIT;
+
+
+DROP TABLE IF EXISTS urls CASCADE;
+
+CREATE TABLE urls
+(
+   url_id            bigint          NOT NULL,
+   url               varchar(400)    NOT NULL,
+   url_type          url_type,
+   rating            smallint,
+   page_created_at   timestamp,
+   name              varchar(100)    NOT NULL,
+   entry_updated_at  timestamp,
+   entry_created_at  timestamp,
+   description       varchar(1000),
+   page_updated_at   timestamp
+);
+
+-- enum 'url_type': 'Tutorial','Description','Information'
+
+ALTER TABLE urls
+   ADD CONSTRAINT urls_pkey
+   PRIMARY KEY (url_id);
+
+COMMIT;
+
+
+INSERT INTO urls
+(
+  url_id,
+  url,
+  url_type,
+  rating,
+  page_created_at,
+  name,
+  entry_updated_at,
+  entry_created_at,
+  description,
+  page_updated_at
+)
+VALUES
+(
+  3,
+  'www.tutorial2.com',
+  'Tutorial',
+  5,
+  NULL,
+  'Tutorial2',
+  NULL,
+  NULL,
+  'Super cool Tutorial2',
+  NULL
+);
+
