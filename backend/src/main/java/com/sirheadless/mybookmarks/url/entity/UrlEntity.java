@@ -23,7 +23,7 @@ import lombok.Setter;
 @Table(name="urls")
 public class UrlEntity implements Serializable{
 	public static enum UrlType {
-		TUTORIAL,DESCRIPTION,INFORMATION;
+		Tutorial,Description,Information;
 	}
 	
 	private static final long serialVersionUID = 1L;
@@ -81,11 +81,11 @@ public class UrlEntity implements Serializable{
 		this.description = description;
 	}
 
-	public String getUrlType() {
+	public UrlType getUrlType() {
 		return urlType;
 	}
 
-	public void setUrlType(String urlType) {
+	public void setUrlType(UrlType urlType) {
 		this.urlType = urlType;
 	}
 
