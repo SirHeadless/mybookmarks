@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS categories CASCADE;
 
 CREATE TABLE categories
 (
-   category_id       bigint          NOT NULL,
+   category_id       bigint          DEFAULT nextval('category_seq'::regclass) NOT NULL,
    parent_id         bigint,
    name              varchar(100)    NOT NULL,
    entry_updated_at  timestamp,
@@ -36,6 +36,7 @@ ALTER TABLE categories
    PRIMARY KEY (category_id);
 
 COMMIT;
+
 
 
 DROP TABLE IF EXISTS category_url_map CASCADE;
@@ -53,9 +54,9 @@ DROP TABLE IF EXISTS urls CASCADE;
 
 CREATE TABLE urls
 (
-   url_id            bigint          NOT NULL,
+   url_id            bigint          DEFAULT nextval('url_seq'::regclass) NOT NULL,
    url               varchar(400)    NOT NULL,
-   url_type          url_type,
+   url_type          varchar(100),
    rating            smallint,
    page_created_at   timestamp,
    name              varchar(100)    NOT NULL,
@@ -64,8 +65,6 @@ CREATE TABLE urls
    description       varchar(1000),
    page_updated_at   timestamp
 );
-
--- enum 'url_type': 'Tutorial','Description','Information'
 
 ALTER TABLE urls
    ADD CONSTRAINT urls_pkey
