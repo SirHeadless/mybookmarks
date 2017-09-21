@@ -100,3 +100,32 @@ VALUES
   NULL
 );
 
+
+DROP SEQUENCE IF EXISTS user_seq;
+
+CREATE SEQUENCE user_seq
+       INCREMENT BY 1
+       MINVALUE 1
+       CACHE 1
+       NO CYCLE;
+
+
+DROP TABLE IF EXISTS users CASCADE;
+
+CREATE TABLE users
+(
+   users_id            bigint          DEFAULT nextval('user_seq'::regclass) NOT NULL,
+   username              varchar(100)    NOT NULL,
+         password       varchar(100) NOT NULL,
+   forename              varchar(100)    NOT NULL,
+      surname       varchar(100),
+   entry_updated_at  timestamp,
+   entry_created_at  timestamp
+
+);
+
+ALTER TABLE users
+   ADD CONSTRAINT users_pkey
+   PRIMARY KEY (users_id);
+
+COMMIT;
