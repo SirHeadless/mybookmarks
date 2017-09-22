@@ -38,16 +38,16 @@ public class UserController {
 		List<UserEntity> list = userService.getAllUsers();
 		return new ResponseEntity<List<UserEntity>>(list, HttpStatus.OK);
 	}
-	@PostMapping("add")
-	public ResponseEntity<Void> addArticle(@RequestBody UserEntity userEntity, UriComponentsBuilder builder) {
-        boolean flag = userService.addUser(userEntity);
-        if (flag == false) {
-        	return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-        }
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("/article/{id}").buildAndExpand(userEntity.getUserId()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
-	}
+//	@PostMapping("add")
+//	public ResponseEntity<Void> addArticle(@RequestBody UserEntity userEntity, UriComponentsBuilder builder) {
+//        boolean flag = userService.addUser(userEntity);
+//        if (flag == false) {
+//        	return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+//        }
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setLocation(builder.path("/article/{id}").buildAndExpand(userEntity.getUserId()).toUri());
+//        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+//	}
 	
 //	@PutMapping("update")
 //	public ResponseEntity<UserEntity> updateArticle(@RequestBody UserEntity userEntity) {
@@ -55,9 +55,9 @@ public class UserController {
 //		return new ResponseEntity<UserEntity>(userEntity, HttpStatus.OK);
 //	}
 //	@DeleteMapping("delete/{id}")
-	public ResponseEntity<Void> deleteArticle(@PathVariable("id") Integer id) {
-		userService.deleteUser(id);
-		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-	}
+//	public ResponseEntity<Void> deleteArticle(@PathVariable("id") Integer id) {
+//		userService.deleteUser(id);
+//		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+//	}
 	
 }

@@ -36,7 +36,13 @@ public class UserEntity implements Serializable{
 	private String surname; 
 	@Column(name="password")
 	private String password; 
+	
 
+	@Column(name="email")
+	private String email; 
+	@Column(name="enabled")
+	private boolean enabled; 
+	
 	@Column(name="entry_updated_at")
 	private Date entryUpdatedAt;
 	@Column(name="entry_created_at")
@@ -84,7 +90,18 @@ public class UserEntity implements Serializable{
 		this.password = password;
 	}
 
-	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public boolean getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 
 
 

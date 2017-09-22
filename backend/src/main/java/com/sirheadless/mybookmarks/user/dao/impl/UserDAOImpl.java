@@ -33,6 +33,7 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public void addUser(UserEntity userEntity) {
 		// TODO Auto-generated method stub
+		userEntity.setEnabled(true);
 		entityManager.persist(userEntity);
 	}
 

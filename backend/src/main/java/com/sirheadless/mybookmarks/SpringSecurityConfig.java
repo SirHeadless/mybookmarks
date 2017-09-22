@@ -24,28 +24,21 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	// https://dzone.com/articles/spring-security-4-authenticate-and-authorize-users
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.requestMatchers().antMatchers("/url/**", "/category/**").and().authorizeRequests().antMatchers("/**")
-		.hasRole("USER").and().formLogin();
-		
-		
-//		http.requestMatchers().antMatchers("/url/**", "/category/**").and().authorizeRequests().antMatchers("/**")
-//				.hasRole("USER").and().httpBasic().authenticationEntryPoint(authEntryPoint);
-
-		// http.csrf().disable().authorizeRequests()
-		// .anyRequest()
-		// .authenticated()
-		// .and().httpBasic()
-		// .authenticationEntryPoint(authEntryPoint);
+		 http.authorizeRequests().antMatchers("/category/**").fullyAuthenticated().and().
+		 httpBasic().and().
+		 csrf().disable();
+//		 fullyAuthenticated()
 	}
 
 	@Autowired
-	public void configureGlobal3(AuthenticationManagerBuilder auth) throws Exception {
-//		System.out.println("configureGlobal3");
-//		auth.inMemoryAuthentication().withUser("john1234").password("password").roles("USER");
-		// CHRISTOPH: Use this!?
-
-//		auth.jdbcAuthentication().dataSource(dataSource)
-//				.usersByUsernameQuery("select username,password, enabled from users where username=?");
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		
+		 auth.jdbcAuthentication().dataSource(dataSource).
+		 usersByUsernameQuery("select username,password, enabled from users where username=?").
+//		 DUMMY QUERY WITH STATIC ROLE https://stackoverflow.com/questions/36775601/spring-security-jdbc-authentication-without-authorization
+		 authoritiesByUsernameQuery("select username, 'ROLE_USER' from users where username=?");
+//		 authoritiesByUsernameQuery("select username, role from user_roles where username=?");
+		 
 
 	}
 
