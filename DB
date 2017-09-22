@@ -1,13 +1,5 @@
 DB: myBookmarks
-
-
-
-DROP TYPE IF EXISTS public.url_type CASCADE;
-
-CREATE TYPE url_type AS ENUM ('Tutorial','Description','Information');
-
-COMMIT;
-
+===============
 
 DROP SEQUENCE IF EXISTS url_seq;
 
@@ -114,18 +106,15 @@ DROP TABLE IF EXISTS users CASCADE;
 
 CREATE TABLE users
 (
-   users_id            bigint          DEFAULT nextval('user_seq'::regclass) NOT NULL,
-   username              varchar(100)    NOT NULL,
-         password       varchar(100) NOT NULL,
-   forename              varchar(100)    NOT NULL,
-      surname       varchar(100),
+   user_id           bigint         DEFAULT nextval('user_seq'::regclass) NOT NULL,
+   username          varchar(100)   NOT NULL,
+   email             varchar(200)   NOT NULL,
+   password          varchar(100)   NOT NULL,
+   forename          varchar(100),
+   surname           varchar(100),
+   enabled           boolean        NOT NULL,
    entry_updated_at  timestamp,
    entry_created_at  timestamp
-
 );
-
-ALTER TABLE users
-   ADD CONSTRAINT users_pkey
-   PRIMARY KEY (users_id);
 
 COMMIT;
