@@ -2,50 +2,40 @@ package com.sirheadless.mybookmarks.category.service.impl;
 
 import java.util.List;
 
+import com.sirheadless.mybookmarks.category.repository.CategoryRepository;
+import com.sirheadless.mybookmarks.category.entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sirheadless.mybookmarks.category.dao.CategoryDAO;
-import com.sirheadless.mybookmarks.category.entity.CategoryEntity;
 import com.sirheadless.mybookmarks.category.service.CategoryService;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
 	@Autowired
-	private CategoryDAO categoryDAO;
+	private CategoryRepository categoryRepository;
 
 	@Override
-	public CategoryEntity getCategoryById(int categoryEntityId) {
-		System.out.println("CategoryServiceImpl get Category for Id: " + categoryEntityId);
-		CategoryEntity obj = categoryDAO.getCategoryEntityById(categoryEntityId);
+	public List<Category> getAllCategories() {
+		return categoryRepository.findAll();
+	}
+
+	@Override
+	public Category getCategoryById(int categoryId) {
+		System.out.println("CategoryServiceImpl get Category for Id: " + categoryId);
+		Category obj = categoryRepository.findByCategoryId(categoryId);
 		return obj;
 	}
 
 	@Override
-	public List<CategoryEntity> getAllCategories() {
-		return categoryDAO.getAllCategories();
+	public boolean addCategory(Category category) {
+		categoryRepository.save(category);
+		return true;
 	}
 
-	@Override
-	public boolean addCategory(CategoryEntity categoryEntity) {
-		System.out.println("ServiceAdd Category: " + categoryEntity);
-		if (categoryDAO.categoryExists(categoryEntity.getName(), categoryEntity.getParentId())) {
-			return false;
-		} else {
-			categoryDAO.addCategory(categoryEntity);
-			return true;
-		}
-	}
 
 	@Override
-	public void updateCategory(CategoryEntity categoryEntity) {
-		categoryDAO.updateCategory(categoryEntity);
-
-	}
-
-	@Override
-	public void deleteCategory(int categoryEntityId) {
-		categoryDAO.deleteCategory(categoryEntityId);
+	public void deleteCategory(int categoryId) {
+		categoryRepository.deleteByCategoryId(categoryId);
 
 	}
 

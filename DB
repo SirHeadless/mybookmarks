@@ -9,7 +9,11 @@ CREATE SEQUENCE url_seq
        CACHE 1
        NO CYCLE;
 
-COMMIT;
+CREATE SEQUENCE category_seq
+       INCREMENT BY 1
+       MINVALUE 1
+       CACHE 1
+       NO CYCLE;
 
 DROP TABLE IF EXISTS categories CASCADE;
 

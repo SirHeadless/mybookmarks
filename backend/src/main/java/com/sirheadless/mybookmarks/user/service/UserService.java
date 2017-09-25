@@ -2,12 +2,12 @@ package com.sirheadless.mybookmarks.user.service;
 
 import java.util.List;
 
-import com.sirheadless.mybookmarks.user.entity.UserEntity;
+import com.sirheadless.mybookmarks.user.entity.User;
 
 public interface UserService {
-    List<UserEntity> getAllUsers();
-	UserEntity getUserById(int userEntityId);
-    boolean addUser(UserEntity userEntity);
-//    void updateUser(UserEntity userEntity);
+    List<User> getAllUsers();
+	User getUserById(int userEntityId);
+    boolean addUser(User user);
+//    void updateUser(User userEntity);
     void deleteUser(int userEntityId);
 }
