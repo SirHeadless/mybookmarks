@@ -1,7 +1,12 @@
 package com.sirheadless.mybookmarks.integrationTests;
 
+import com.sirheadless.mybookmarks.MybookmarksApplication;
 import com.sirheadless.mybookmarks.url.repository.UrlRepository;
 import com.sun.glass.ui.Application;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
+
 import org.json.JSONException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,21 +34,21 @@ import org.springframework.test.web.servlet.MockMvc;
 @RunWith(SpringRunner.class)
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-        classes = Application.class)
-@AutoConfigureMockMvc
+        classes = MybookmarksApplication.class)
+//@AutoConfigureMockMvc
 //@TestPropertySource(
 //        locations = "classpath:application-integrationtest.properties")
 public class UrlRestControllerIntTest {
 
-//    @LocalServerPort
-//    private String port;
+    @LocalServerPort
+    private String port;
 
     TestRestTemplate restTemplate = new TestRestTemplate();
 
     HttpHeaders headers = new HttpHeaders();
 
     @Test
-    public void testRetrieveStudentCourse() {
+    public void testRetrieveStudentCourse() throws Exception {
 
         HttpEntity<String> entity = new HttpEntity<String>(null, headers);
 
@@ -51,27 +56,14 @@ public class UrlRestControllerIntTest {
                 createURLWithPort("/url/3"),
                 HttpMethod.GET, entity, String.class);
 
-        String expected = "{\n" +
-                "    \"urlId\": 3,\n" +
-                "    \"url\": \"www.tutorial2.com\",\n" +
-                "    \"name\": \"Tutorial2\",\n" +
-                "    \"description\": \"Super cool Tutorial2\",\n" +
-                "    \"urlType\": \"Tutorial\",\n" +
-                "    \"rating\": 5,\n" +
-                "    \"pageCreatedAt\": null,\n" +
-                "    \"entryUpdatedAt\": null,\n" +
-                "    \"entryCreatedAt\": null\n" +
-                "}";
+        String expected = "{\"urlId\":3,\"url\":\"www.tutorialdffds3.com\",\"name\":\"Tutorial55\",\"description\":\"Super cool Tutorial323\",\"urlType\":\"Tutorial\",\"rating\":5,\"pageCreatedAt\":null,\"entryUpdatedAt\":null,\"entryCreatedAt\":1505151069928}";
+        
+        JSONAssert.assertEquals(expected, response.getBody(), false);
 
-        try {
-            JSONAssert.assertEquals(expected, response.getBody(), false);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
     }
 
     private String createURLWithPort(String uri) {
-        return "http://localhost:8080"  + uri;
+        return "http://localhost:" + port  + uri;
     }
 
 }
