@@ -7,7 +7,7 @@ export class UserService {
    constructor(private http: Http) {
    }
    getUsers(): Observable<User[]> {
-      return this.http.get('http://localhost:8080/users')
+      return this.http.get('http://localhost:8080/url/')
          .map((res: Response) => res.json())
          .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
    }
