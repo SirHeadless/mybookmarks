@@ -6,13 +6,24 @@ import { routing } from './app.routing';
 
 import { AlertService, AuthenticationService } from './_services/index'; // , UserService
 import { AuthGuard } from './_guards/index';
+import { AlertComponent } from './_directives/index';
 import { MockBackend, MockConnection } from '@angular/http/testing';
+
+import { LoginComponent } from './login/index';
+import { RegisterComponent } from './register/index';
+import { HomeComponent } from './home/index';
+
+
 
 import { AppComponent } from './app.component';
 import { UserService } from 'app/services/user.service';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AlertComponent,
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
