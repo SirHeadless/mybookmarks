@@ -32,6 +32,8 @@ public class UserServiceImpl implements UserService {
         return true;
 
     }
+    
+    
 
 //	@Override
 //	public void updateUser(User userEntity) {
@@ -44,5 +46,10 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteByUserId(userEntityId);
 
     }
+
+	@Override
+	public User getUserByUsername(String username) {
+		return userRepository.findByUsername(username);
+	}
 
 }

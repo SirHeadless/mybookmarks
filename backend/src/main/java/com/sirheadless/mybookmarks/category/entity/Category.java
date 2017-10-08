@@ -38,6 +38,8 @@ public class Category implements Serializable{
 	private Date entryUpdatedAt;
 	@Column(name="entry_created_at")
 	private Date entryCreatedAt;
+	@Column(name="user_id")
+	private int userId;
 	
 	public int getCategoryId() {
 		return categoryId;
@@ -75,12 +77,19 @@ public class Category implements Serializable{
 	public void setEntryCreatedAt(Date entryCreatedAt) {
 		this.entryCreatedAt = entryCreatedAt;
 	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	@Override
 	public String toString() {
-		return "Category [categoryId=" + categoryId + ", name=" + name + ", description=" + description
-				+ ", parentId=" + parentId + ", entryUpdatedAt=" + entryUpdatedAt + ", entryCreatedAt=" + entryCreatedAt
-				+ "]";
+		return "Category [categoryId=" + categoryId + ", name=" + name + ", description=" + description + ", parentId="
+				+ parentId + ", entryUpdatedAt=" + entryUpdatedAt + ", entryCreatedAt=" + entryCreatedAt + ", userId="
+				+ userId + "]";
 	}
+
 
 	
 	

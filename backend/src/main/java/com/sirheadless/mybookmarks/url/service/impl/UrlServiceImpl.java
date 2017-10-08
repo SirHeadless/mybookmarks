@@ -38,4 +38,10 @@ public class UrlServiceImpl implements UrlService {
 
 	}
 
+	@Override
+	public List<Url> getAllUrlsByUserId(int userId) {
+		// TODO Auto-generated method stub
+		return urlRepository.findAllByUserId(userId);
+	}
+
 }

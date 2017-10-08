@@ -19,14 +19,14 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-//	@GetMapping("/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable("id") Integer id) {
 		System.out.println("UserController get User for Id: " + id);
 		User user = userService.getUserById(id);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
-	@GetMapping("/")
+	@GetMapping("")
 	public ResponseEntity<List<User>> getAllUsers() {
 		List<User> list = userService.getAllUsers();
 		return new ResponseEntity<List<User>>(list, HttpStatus.OK);

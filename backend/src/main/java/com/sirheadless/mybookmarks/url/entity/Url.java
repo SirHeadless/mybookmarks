@@ -48,7 +48,10 @@ public class Url implements Serializable{
 	private Date entryUpdatedAt;
 	@Column(name="entry_created_at")
 	private Date entryCreatedAt;
-
+	@Column(name="user_id")
+	private int userId;
+	
+	
 	public int getUrlId() {
 		return urlId;
 	}
@@ -131,11 +134,22 @@ public class Url implements Serializable{
 		 this.entryUpdatedAt = new Date();
 	  }
 
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
 	@Override
 	public String toString() {
-		return "Url [urlId=" + urlId + ", url=" + url + ", name=" + name + ", description=" + description
-				+ ", urlType=" + urlType + ", rating=" + rating + "]";
+		return "Url [urlId=" + urlId + ", url=" + url + ", name=" + name + ", description=" + description + ", urlType="
+				+ urlType + ", rating=" + rating + ", pageCreatedAt=" + pageCreatedAt + ", entryUpdatedAt="
+				+ entryUpdatedAt + ", entryCreatedAt=" + entryCreatedAt + ", userId=" + userId + "]";
 	}
+
+	
 	
 
 }

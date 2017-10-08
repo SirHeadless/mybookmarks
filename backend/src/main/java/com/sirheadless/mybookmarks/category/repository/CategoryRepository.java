@@ -8,6 +8,7 @@ import org.springframework.data.repository.Repository;
 public interface CategoryRepository extends Repository<Category,Long>{
 	List<Category> findAll();
 	Category findByCategoryId(int categoryId);
+	List<Category> findAllByUserId(int userId);
     void save(Category category);
     void deleteByCategoryId(int categoryId);
 }

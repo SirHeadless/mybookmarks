@@ -39,4 +39,12 @@ public class CategoryServiceImpl implements CategoryService {
 
 	}
 
+	@Override
+	public List<Category> getAllCategoriesByUserId(int userId) {
+		// TODO Auto-generated method stub
+		return categoryRepository.findAllByUserId(userId);
+	}
+	
+	
+
 }
