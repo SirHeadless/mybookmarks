@@ -1,31 +1,20 @@
 package com.sirheadless.mybookmarks.url.controller;
 
-import java.util.List;
-
 import com.sirheadless.mybookmarks.authenticationfacade.AuthenticationFacade;
-import com.sirheadless.mybookmarks.category.entity.Category;
 import com.sirheadless.mybookmarks.url.entity.Url;
+import com.sirheadless.mybookmarks.url.service.UrlService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.sirheadless.mybookmarks.url.service.UrlService;
+import java.util.List;
 
 //@SpringBootApplication
 //@EnableAutoConfiguration
-@Controller
+@RestController
 @RequestMapping("url")
 public class UrlController {
 	
