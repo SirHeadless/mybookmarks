@@ -1,6 +1,5 @@
-﻿import { Injectable } from '@angular/core';
-import { Http, Headers,  RequestOptions,  Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+﻿import {Injectable} from '@angular/core';
+import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -30,9 +29,10 @@ export class AuthenticationService {
     }
 
     private jwt(username: string, password: string) {
-
-//        const headers = new Headers({ 'Authorization': username + ' ' + password});
-        const headers = new Headers({ 'Authorization': 'Basic ' + btoa(username + ':' + password)});
+      debugger;
+      const headers = new Headers({'Authorization': username + ' ' + password});
+//         const headers = new Headers({ 'Authorization': 'Basic ' + btoa(username + ':' + password)});
+//         const headers = new Headers({ 'Authorization': 'Bearer ' + btoa(username + ':' + password)});
 //        const headers = {'Authorization': 'Basic ' + btoa(username + ':' + password)};
         console.log(headers);
 //                  headers.append('Access-Control-Allow-Origin', 'http://localhost:8080');
