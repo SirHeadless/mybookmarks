@@ -1,155 +1,138 @@
 package com.sirheadless.mybookmarks.url.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.Type;
-
-import lombok.Getter;
-import lombok.Setter;
-
 @Entity
-@Table(name="urls")
-public class Url implements Serializable{
-	public static enum UrlType {
-		Tutorial,Description,Information;
-	}
-	
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="url_id")
-	private int urlId;
-	@Column(name="url")
-	private String url;
-	@Column(name="name")
-	private String name;
-	@Column(name="description")
-	private String description; 
-	@Column(name="url_type")
-	@Enumerated(EnumType.STRING)
-	private UrlType urlType;
-	@Column(name="rating")
-	private int rating;
-	@Column(name="page_created_at")
-	private Date pageCreatedAt;
-	@Column(name="entry_updated_at")
-	private Date entryUpdatedAt;
-	@Column(name="entry_created_at")
-	private Date entryCreatedAt;
-	@Column(name="user_id")
-	private int userId;
-	
-	
-	public int getUrlId() {
-		return urlId;
-	}
+@Table(name = "urls")
+public class Url implements Serializable {
+    public static enum UrlType {
+        Tutorial, Description, Information;
+    }
 
-	public void setUrlId(int urlId) {
-		this.urlId = urlId;
-	}
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "url_id")
+    private int urlId;
+    @Column(name = "url")
+    private String url;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "url_type")
+    @Enumerated(EnumType.STRING)
+    private UrlType urlType;
+    @Column(name = "rating")
+    private int rating;
+    @Column(name = "page_created_at")
+    private Date pageCreatedAt;
+    @Column(name = "entry_updated_at")
+    private Date entryUpdatedAt;
+    @Column(name = "entry_created_at")
+    private Date entryCreatedAt;
+    @Column(name = "user_id")
+    private int userId;
 
-	public String getUrl() {
-		return url;
-	}
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public int getUrlId() {
+        return urlId;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setUrlId(int urlId) {
+        this.urlId = urlId;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public UrlType getUrlType() {
-		return urlType;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setUrlType(UrlType urlType) {
-		this.urlType = urlType;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public int getRating() {
-		return rating;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setRating(int rating) {
-		this.rating = rating;
-	}
+    public UrlType getUrlType() {
+        return urlType;
+    }
 
-	public Date getPageCreatedAt() {
-		return pageCreatedAt;
-	}
+    public void setUrlType(UrlType urlType) {
+        this.urlType = urlType;
+    }
 
-	public void setPageCreatedAt(Date pageCreatedAt) {
-		this.pageCreatedAt = pageCreatedAt;
-	}
+    public int getRating() {
+        return rating;
+    }
 
-	public Date getEntryUpdatedAt() {
-		return entryUpdatedAt;
-	}
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
 
-	public void setEntryUpdatedAt(Date entryUpdatedAt) {
-		this.entryUpdatedAt = entryUpdatedAt;
-	}
+    public Date getPageCreatedAt() {
+        return pageCreatedAt;
+    }
 
-	public Date getEntryCreatedAt() {
-		return entryCreatedAt;
-	}
+    public void setPageCreatedAt(Date pageCreatedAt) {
+        this.pageCreatedAt = pageCreatedAt;
+    }
 
-	public void setEntryCreatedAt(Date entryCreatedAt) {
-		this.entryCreatedAt = entryCreatedAt;
-	}
-	
-	  @PrePersist
-	  protected void onCreate() {
-		 this.entryCreatedAt = new Date();
-	  }
+    public Date getEntryUpdatedAt() {
+        return entryUpdatedAt;
+    }
 
-	  @PreUpdate
-	  protected void onUpdate() {
-		 this.entryUpdatedAt = new Date();
-	  }
+    public void setEntryUpdatedAt(Date entryUpdatedAt) {
+        this.entryUpdatedAt = entryUpdatedAt;
+    }
 
-	public int getUserId() {
-		return userId;
-	}
+    public Date getEntryCreatedAt() {
+        return entryCreatedAt;
+    }
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+    public void setEntryCreatedAt(Date entryCreatedAt) {
+        this.entryCreatedAt = entryCreatedAt;
+    }
 
-	@Override
-	public String toString() {
-		return "Url [urlId=" + urlId + ", url=" + url + ", name=" + name + ", description=" + description + ", urlType="
-				+ urlType + ", rating=" + rating + ", pageCreatedAt=" + pageCreatedAt + ", entryUpdatedAt="
-				+ entryUpdatedAt + ", entryCreatedAt=" + entryCreatedAt + ", userId=" + userId + "]";
-	}
+    @PrePersist
+    protected void onCreate() {
+        this.entryCreatedAt = new Date();
+    }
 
-	
-	
+    @PreUpdate
+    protected void onUpdate() {
+        this.entryUpdatedAt = new Date();
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return "Url [urlId=" + urlId + ", url=" + url + ", name=" + name + ", description=" + description + ", urlType="
+                + urlType + ", rating=" + rating + ", pageCreatedAt=" + pageCreatedAt + ", entryUpdatedAt="
+                + entryUpdatedAt + ", entryCreatedAt=" + entryCreatedAt + ", userId=" + userId + "]";
+    }
+
 
 }

@@ -15,21 +15,21 @@ import java.util.List;
 @RestController
 @RequestMapping("user")
 public class UserController {
-	@Autowired
-	private UserService userService;
-	
-	@GetMapping("/{id}")
-	public ResponseEntity<User> getUserById(@PathVariable("id") Integer id) {
-		System.out.println("UserController get User for Id: " + id);
-		User user = userService.getUserById(id);
-		return new ResponseEntity<User>(user, HttpStatus.OK);
-	}
-	
-	@GetMapping("")
-	public ResponseEntity<List<User>> getAllUsers() {
-		List<User> list = userService.getAllUsers();
-		return new ResponseEntity<List<User>>(list, HttpStatus.OK);
-	}
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable("id") Integer id) {
+        System.out.println("UserController get User for Id: " + id);
+        User user = userService.getUserById(id);
+        return new ResponseEntity<User>(user, HttpStatus.OK);
+    }
+
+    @GetMapping("")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> list = userService.getAllUsers();
+        return new ResponseEntity<List<User>>(list, HttpStatus.OK);
+    }
 //	@PostMapping("add")
 //	public ResponseEntity<Void> addArticle(@RequestBody User userEntity, UriComponentsBuilder builder) {
 //        boolean flag = userService.addUser(userEntity);
@@ -40,7 +40,7 @@ public class UserController {
 //        headers.setLocation(builder.path("/article/{id}").buildAndExpand(userEntity.getUserId()).toUri());
 //        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 //	}
-	
+
 //	@PutMapping("update")
 //	public ResponseEntity<User> updateArticle(@RequestBody User userEntity) {
 //		userService.updateUser(userEntity);
@@ -51,5 +51,5 @@ public class UserController {
 //		userService.deleteUser(id);
 //		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 //	}
-	
+
 }

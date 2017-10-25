@@ -1,13 +1,12 @@
 package com.sirheadless.mybookmarks.user.service.impl;
 
-import java.util.List;
-
 import com.sirheadless.mybookmarks.user.entity.User;
+import com.sirheadless.mybookmarks.user.repository.UserRepository;
+import com.sirheadless.mybookmarks.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sirheadless.mybookmarks.user.repository.UserRepository;
-import com.sirheadless.mybookmarks.user.service.UserService;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,8 +31,7 @@ public class UserServiceImpl implements UserService {
         return true;
 
     }
-    
-    
+
 
 //	@Override
 //	public void updateUser(User userEntity) {
@@ -47,9 +45,9 @@ public class UserServiceImpl implements UserService {
 
     }
 
-	@Override
-	public User getUserByUsername(String username) {
-		return userRepository.findByUsername(username);
-	}
+    @Override
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 
 }

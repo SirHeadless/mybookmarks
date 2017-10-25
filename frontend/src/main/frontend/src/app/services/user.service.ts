@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
-import { User } from '../models/user';
+import {Injectable} from '@angular/core';
+import {Http, Response} from '@angular/http';
+import {Observable} from 'rxjs/Rx';
+import {User} from '../models/user';
+
 @Injectable()
 export class UserService {
-   constructor(private http: Http) {
-   }
-   getUsers(): Observable<User[]> {
-      return this.http.get('http://localhost:8080/url/')
-         .map((res: Response) => res.json())
-         .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
-   }
+  constructor(private http: Http) {
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get('http://localhost:8080/url/')
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
 }
