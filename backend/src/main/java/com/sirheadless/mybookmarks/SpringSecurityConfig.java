@@ -25,10 +25,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	// https://dzone.com/articles/spring-security-4-authenticate-and-authorize-users
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		 http.authorizeRequests().antMatchers("/category/**","/url/**").fullyAuthenticated().and().
+		 http.authorizeRequests().antMatchers(HttpMethod.OPTIONS,"/**").permitAll().antMatchers("/category/**","/url/**").fullyAuthenticated().and().
 		 httpBasic().and().
 		 csrf().disable();
-//		 fullyAuthenticated()
 	}
 
 	@Autowired

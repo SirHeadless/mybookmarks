@@ -33,29 +33,29 @@ public class CategoryController {
 	public ResponseEntity<List<Category>> getAllCategoriesByUserId(@PathVariable("userId") Integer userId) {
 		System.out.println("CategoryController get all Categories for userId: " + userId);
 		List<Category> list = categoryService.getAllCategoriesByUserId(userId);
-		return new ResponseEntity<List<Category>>(list, HttpStatus.OK);
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
 	@GetMapping("")
 	public ResponseEntity<List<Category>> getAllCategories() {		
 		List<Category> list = categoryService.getAllCategoriesByUserId(authenticationFacade.getUserId());
-		return new ResponseEntity<List<Category>>(list, HttpStatus.OK);
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	@PostMapping("add")
-	public ResponseEntity<Void> addCategory(@RequestBody Category category, UriComponentsBuilder builder) {
+	public ResponseEntity<Void> addCategory(@RequestBody Category category) {
 		System.out.println("Add Category " + category);
 		Integer userId = authenticationFacade.getUserId();
 		if(userId != null) {
 			category.setUserId(userId);
 	        boolean flag = categoryService.addCategory(category);
-	        if (flag == false) {
-	        	return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+	        if (!flag) {
+	        	return new ResponseEntity<>(HttpStatus.CONFLICT);
 	        }
 	        HttpHeaders headers = new HttpHeaders();
 //	        headers.setLocation(builder.path("/article/{id}").buildAndExpand(category.getCategoryId()).toUri());
-	        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+	        return new ResponseEntity<>(headers, HttpStatus.CREATED);
 		}
-		return new ResponseEntity<Void>(HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	@DeleteMapping("delete/{id}")
 	public ResponseEntity<Void> deleteArticle(@PathVariable("id") Integer id) {
@@ -66,20 +66,20 @@ public class CategoryController {
 		}
 		
 		categoryService.deleteCategory(id);
-		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
 	private ResponseEntity<Void> checkAuthentication(int id){
 		Integer userId = authenticationFacade.getUserId();
 		if(userId != null) {
-			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 		Category category = categoryService.getCategoryById(id);
 		if (category == null) {
-			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		if (category.getUserId() != userId) {
-			return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 		return null;
 	}
