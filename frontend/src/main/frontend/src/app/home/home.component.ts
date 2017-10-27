@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   users: User[] = [];
 
   constructor(private userService: UserService) {
+    debugger;
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
@@ -28,6 +29,9 @@ export class HomeComponent implements OnInit {
 
   private loadAllUsers() {
     this.userService.getAll().subscribe(users => {
+      debugger;
+      console.log("============ ALL USERS: ===============")
+      console.log(users);
       this.users = users;
     });
   }

@@ -32,9 +32,9 @@ export class UserService {
 
   private jwt() {
     // create authorization header with jwt token
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser && currentUser.token) {
-      const headers = new Headers({'Authorization': 'test test'});
+    const basicAuthentication = localStorage.getItem('basicAuthentication');
+    if (basicAuthentication) {
+      const headers = new Headers({'Authorization': basicAuthentication});
       return new RequestOptions({headers: headers});
     }
   }

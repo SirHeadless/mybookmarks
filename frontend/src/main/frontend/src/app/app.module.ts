@@ -12,10 +12,10 @@ import {MockBackend} from '@angular/http/testing';
 import {LoginComponent} from './login/index';
 import {RegisterComponent} from './register/index';
 import {HomeComponent} from './home/index';
-
+import {UserService} from './_services/user.service';
 
 import {AppComponent} from './app.component';
-import {UserService} from 'app/services/user.service';
+import {UserService2} from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +35,7 @@ import {UserService} from 'app/services/user.service';
     AuthGuard,
     AlertService,
     AuthenticationService,
+    UserService2,
     UserService,
 
     // providers used to create fake backend

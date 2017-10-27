@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {UserService} from 'app/services/user.service';
+import {UserService} from './_services/user.service';
 
 @Component({
   moduleId: module.id,
@@ -12,6 +12,6 @@ export class AppComponent {
   users;
 
   constructor(private userService: UserService) {
-    this.users = userService.getUsers();
+    this.users = userService.getAll();
   }
 }

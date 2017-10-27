@@ -10,17 +10,17 @@ export class AuthenticationService {
   login(username: string, password: string) {
 
     debugger;
-    return this.http.get('http://localhost:8080/url/', this.jwt(username, password))
+    return this.http.get('http://localhost:8080/user/', this.jwt(username, password))
     // JSON.stringify({ username: username, password: password }))
 
       .map((response: Response) => {
         debugger;
         // login successful if there's a jwt token in the response
         const user = response.json();
-        if (user && user.token) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
-        }
+
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        localStorage.setItem('basicAuthentication', 'Basic ' + btoa(username + ':' + password));
+
 
         return user;
       });
@@ -28,7 +28,7 @@ export class AuthenticationService {
 
   logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('basicAuthentication');
   }
 
   private jwt(username: string, password: string) {
