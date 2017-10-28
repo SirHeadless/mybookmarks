@@ -1,7 +1,9 @@
 ﻿import {Component, OnInit} from '@angular/core';
 
 import {User} from '../_models/index';
+import {Url} from '../_models/index';
 import {UserService} from '../_services/index';
+import {UrlService} from "../_services/url.service"
 
 @Component({
   moduleId: module.id,
@@ -10,29 +12,29 @@ import {UserService} from '../_services/index';
 
 export class HomeComponent implements OnInit {
   currentUser: User;
-  users: User[] = [];
+  urls: Url[] = [];
+  // private urlService: UrlService;
 
-  constructor(private userService: UserService) {
-    debugger;
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  constructor(private urlService: UrlService) {
   }
 
   ngOnInit() {
-    this.loadAllUsers();
+    this.loadAllUrls();
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
-  deleteUser(id: number) {
-    this.userService.delete(id).subscribe(() => {
-      this.loadAllUsers();
-    });
-  }
+  // deleteUser(id: number) {
+  //   this.userService.delete(id).subscribe(() => {
+  //     this.loadAllUsers();
+  //   });
+  // }
 
-  private loadAllUsers() {
-    this.userService.getAll().subscribe(users => {
+  private loadAllUrls() {
+    this.urlService.getAll().subscribe(urls => {
       debugger;
       console.log("============ ALL USERS: ===============")
-      console.log(users);
-      this.users = users;
+      console.log(urls);
+      this.urls = urls;
     });
   }
 }

@@ -13,6 +13,7 @@ import {LoginComponent} from './login/index';
 import {RegisterComponent} from './register/index';
 import {HomeComponent} from './home/index';
 import {UserService} from './_services/user.service';
+import {UrlService} from "./_services/url.service"
 
 import {AppComponent} from './app.component';
 import {UserService2} from './services/user.service';
@@ -37,6 +38,7 @@ import {UserService2} from './services/user.service';
     AuthenticationService,
     UserService2,
     UserService,
+    UrlService,
 
     // providers used to create fake backend
     MockBackend,

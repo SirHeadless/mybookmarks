@@ -14,11 +14,12 @@ export class AuthenticationService {
     // JSON.stringify({ username: username, password: password }))
 
       .map((response: Response) => {
-        debugger;
         // login successful if there's a jwt token in the response
         const user = response.json();
 
-        localStorage.setItem('currentUser', JSON.stringify(user));
+
+        // TODO THIS REQUEST SHOULD NOT RETURN ALL USERS WITH PASSWORDS!
+        localStorage.setItem('currentUser', JSON.stringify(user[0]));
         localStorage.setItem('basicAuthentication', 'Basic ' + btoa(username + ':' + password));
 
 

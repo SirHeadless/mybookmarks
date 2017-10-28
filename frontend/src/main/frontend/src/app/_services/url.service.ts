@@ -1,10 +1,10 @@
 ﻿import {Injectable} from '@angular/core';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 
-import {User} from '../_models/index';
+import {Url} from '../_models/index';
 
 @Injectable()
-export class UserService {
+export class UrlService {
   constructor(private http: Http) {
   }
 
@@ -16,12 +16,12 @@ export class UserService {
     return this.http.get('http://localhost:8080/url/' + id, this.jwt()).map((response: Response) => response.json());
   }
 
-  create(user: User) {
-    return this.http.post('http://localhost:8080/url/', user, this.jwt()).map((response: Response) => response.json());
+  create(url: Url) {
+    return this.http.post('http://localhost:8080/url/', url, this.jwt()).map((response: Response) => response.json());
   }
 
-  // update(user: User) {
-  //   return this.http.put('http://localhost:8080/url/' + user.id, user, this.jwt()).map((response: Response) => response.json());
+  // update(url: Url) {
+  //   return this.http.put('http://localhost:8080/url/' + url.id, url, this.jwt()).map((response: Response) => response.json());
   // }
 
   delete(id: number) {
